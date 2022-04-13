@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import ModelController.*;
+import Views.*;
 
 public class Main {
 
