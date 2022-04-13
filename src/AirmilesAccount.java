@@ -1,19 +1,19 @@
 
-
 public class AirmilesAccount extends Account{
+	
 	public final static double FEE = 0.75;
 	public final static String TYPE = "Air Miles Account";
 	
 	private int airmiles;
 	private int extraAirmiles;
-	private String myReport;
+//	private String myReport;
 		
 	public AirmilesAccount() {
 		super();
 		// TODO Auto-generated constructor stub
 		airmiles = 0;
 		extraAirmiles = 0;
-		myReport = "";
+//		myReport = "";
 	}
 	
 	public void initialDepositAirmiles() {	

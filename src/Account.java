@@ -8,17 +8,19 @@ import java.util.ArrayList;
 
 
 // make it an abstract class because 1)gives you the abstract method   2)you can't construct any Student object, only the sub class objects, the Student class is only for purpose of inheriting
-public abstract class Account {
+public abstract class Account implements java.io.Serializable{
 
     protected String description;
     protected double balance;
     protected ArrayList<Transaction> transactions;
+    protected String myReport;
 
     // --------------------------------------- constructor methods
     public Account() {
     	description = "";
         balance = 0;
         transactions = new ArrayList<Transaction>();
+        myReport = "";
     }
 
     // --------------------------------------- get/set methods
@@ -55,7 +57,9 @@ public abstract class Account {
     // --------------------------------------- abstract method
     public abstract void withdraw(String value);
     
+    //for Model withdraw method
     public abstract double getFee();
+    // for ViewWithdraw error message
     public abstract String getFeeStr();
     
     public abstract String viewAccount();

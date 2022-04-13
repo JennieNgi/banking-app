@@ -1,11 +1,10 @@
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Model {
 	ArrayList<Account> accounts;
-	SavingAccount newSavingAccount;
-	AirmilesAccount newAirmilesAccount;
-	Transaction newTransaction;
 	int currentAccount;
 	
 	public Model() {
@@ -21,6 +20,10 @@ public class Model {
 	
 	public int getCurrentAccount(){
 		return currentAccount;
+	}
+	
+	public void setCurrentAccount(int value){
+		currentAccount = value;
 	}
 	
 	
@@ -49,7 +52,7 @@ public class Model {
 	}
 	
 	public void addDeposit(String description, String amount) {
-		newTransaction = new Transaction();
+		Transaction newTransaction = new Transaction();
 		newTransaction.setDescription(description);
 		newTransaction.setAmount(amount);
 		accounts.get(currentAccount).getTransactions().add(newTransaction);
@@ -61,7 +64,7 @@ public class Model {
 	}
 	
 	public void withdraw(String description, String amount) {
-		newTransaction = new Transaction();
+		Transaction newTransaction = new Transaction();
 		newTransaction.setDescription(description);
 		newTransaction.setAmount("-" + Double.toString(Double.parseDouble(amount) + accounts.get(currentAccount).getFee()));
 		accounts.get(currentAccount).getTransactions().add(newTransaction);
@@ -69,6 +72,7 @@ public class Model {
 	}
 	
 	public String getListItems() {
+//		System.out.println(currentAccount);
 		return accounts.get(currentAccount).getDescription();
 	}
 	
@@ -79,6 +83,31 @@ public class Model {
 	
 	public void selectAccount(int value) {
 		currentAccount = value;
+	}
+	
+	public void writeObject() {
+		List<Object> objectlist = new ArrayList<>();
+		FileManager.getInstance().setFilename("account.dat");
+		// loop thru the accounts and add each account to the List<Object> objectlist
+		for (Account a : accounts) {
+			objectlist.add(a);
+		}
+		System.out.println(objectlist);
+		// save the entire List<Object> objectlist to the file
+		FileManager.getInstance().save(objectlist);		
+		
+	}
+	
+	public void readObject() {
+		// load the account object[] using singleton FileManager Class
+		FileManager.getInstance().setFilename("account.dat");
+		// converting the List<Object> into List<ArrayList>
+		List<Account> accountList = (List<Account>) FileManager.getInstance().load();
+		System.out.println(accountList);
+		// converting the List <Account> into ArrayList
+		accounts.addAll(accountList);
+		// set the default selected account to the first one
+		currentAccount = 0;
 	}
 	
 }

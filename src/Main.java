@@ -4,6 +4,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		Model model = new Model();
+		model.readObject();
+		
 		ViewMenu viewMenu = new ViewMenu(model);
 		ViewCreate viewCreate = new ViewCreate(model);
 		ViewDeposit viewDeposit = new ViewDeposit(model);

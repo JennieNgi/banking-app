@@ -3,11 +3,11 @@ public class SavingAccount extends Account{
 	
 	public final static double FEE = 0.50;
 	public final static String TYPE = "Savings Account";
-	private String myReport;
+//	private String myReport;
 	
 	public SavingAccount() {
 		super();
-		myReport = "";
+//		myReport = "";
 		// TODO Auto-generated constructor stub
 	}
 	

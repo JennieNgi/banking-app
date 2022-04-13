@@ -1,21 +1,22 @@
 import java.time.LocalDateTime;   
 import java.time.format.DateTimeFormatter;  
 
-public class Transaction {
-	protected String description;
-    protected double amount;
-    protected LocalDateTime timeStamp;
-    protected DateTimeFormatter dtf;
+public class Transaction implements java.io.Serializable{
+	
+	private String description;
+	private double amount;
+	private LocalDateTime timeStamp;
 
     // --------------------------------------- constructor methods
     public Transaction() {
     	description = "";
     	amount = 0;
     	timeStamp = LocalDateTime.now(); 
-    	dtf = DateTimeFormatter.ofPattern("E MMM dd HH:mm:ss 'ADT' yyyy");  
     }
     
     public String getTimeStamp() {
+    	DateTimeFormatter dtf;
+    	dtf = DateTimeFormatter.ofPattern("E MMM dd HH:mm:ss 'ADT' yyyy");  
     	return dtf.format(timeStamp);
 	}
     
@@ -38,7 +39,5 @@ public class Transaction {
     public void setDescription(String newDescription) {
     	description = newDescription;
 	}
-    
-    
-    
+ 
 }

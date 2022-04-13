@@ -73,8 +73,13 @@ public class Controller {
 	}
 	
 	private void onViewSelect(ActionEvent e) {
+		viewSelect.getlistModel().removeAllElements();
+		System.out.println(model.getAccounts().size());
+		for(Account p : model.getAccounts()){
+			ViewSelect.updateSelectionList(p.getDescription());
+		} 
+		viewSelect.getList().setSelectedIndex(0);
 		viewSelect.setVisible(true);
-		
 		viewMenu.setVisible(false);
 	}
 	
@@ -84,6 +89,8 @@ public class Controller {
 	}
 	
 	private void onQuit(ActionEvent e) {
+		// write the accounts into the file
+		model.writeObject();
 		viewMenu.setVisible(false);
 	}
 	
@@ -167,10 +174,10 @@ public class Controller {
 	}
 	
 	private void selectAccount(ActionEvent e) {
-		
 		model.selectAccount(viewSelect.getAccountTypeIndex());
 		viewSelect.setVisible(false);
 		viewMenu.setVisible(true);
+		// set back the default selected item as first one
 		viewSelect.getList().setSelectedIndex(0);
 	}
 	

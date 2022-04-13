@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileManager {
 	private static FileManager instance = null;
@@ -20,17 +21,19 @@ public class FileManager {
 	}
 	
 	// ------------------------------------------------------------- public methods
-	public void save(Object object) {
+	public void save(List<Object> objectlist) {
 		System.out.println("save");
 
 		try {
 			File file = new File(filename);
 			FileOutputStream fileStream = new FileOutputStream(file);
 			ObjectOutputStream dataStream = new ObjectOutputStream(fileStream);
-			dataStream.writeObject(object);
+			// write the object list into the datastream
+			dataStream.writeObject(objectlist);
+			System.out.println(objectlist);
 			dataStream.close();
 		} catch (Exception e) {
-			System.out.println("Binary file output error:" + e.getMessage());
+			System.out.println("Binary file input error:" + e.getMessage());
 		}
 	}
 	
@@ -43,12 +46,16 @@ public class FileManager {
 			if (file.exists()) {
 				FileInputStream fileStream = new FileInputStream(file);
 				ObjectInputStream dataStream = new ObjectInputStream(fileStream);
-				Object object = (Account) dataStream.readObject();
+				// converting the List<Object> to List<Account>
+				List<Account> objectlist = (List<Account>) dataStream.readObject();
 				dataStream.close();
+				System.out.println(objectlist);
 				
-				return object;
+				return objectlist;
 			}else {
-				return null;
+				// if the file doesn't exist, create an empty ArrayList to start the program
+				List<Account> objectlist = new ArrayList<Account>();
+				return objectlist;
 			}
 		} catch (Exception e) {
 			System.out.println("Binary file output error:" + e.getMessage());
