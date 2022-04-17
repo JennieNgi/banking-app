@@ -70,6 +70,10 @@ public class TextFieldValidator {
 		return validateStatus;
 	}
 	
+	/** Check whether the target match the regular expression and change the error color of the border when the error status is false
+	 * @return An boolean representing the error status 
+	 * @param balance, fee
+	 */
 	public boolean checkWithDrawAmount(double balance , double fee) {
 		if (target.getText().matches(regExp) && Double.parseDouble(target.getText()) > 0 && Double.parseDouble(target.getText()) <= balance - fee) {
 			validateStatus = true;
