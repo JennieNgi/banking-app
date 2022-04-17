@@ -123,8 +123,8 @@ public class ViewWithdraw extends JFrame{
 	
 	public void validateMe() {
 		textFieldValidatorAmount.checkWithDrawAmount(model.getAccounts().get(model.getCurrentAccount()).getBalance() , model.getAccounts().get(model.getCurrentAccount()).getFee());
-		System.out.println(model.getAccounts().get(model.getCurrentAccount()).getBalance());
-		System.out.println(model.getAccounts().get(model.getCurrentAccount()).getFee());
+//		System.out.println(model.getAccounts().get(model.getCurrentAccount()).getBalance());
+//		System.out.println(model.getAccounts().get(model.getCurrentAccount()).getFee());
 		textFieldValidatorDescription.check();
 		
 		if (textFieldValidatorAmount.getValidateStatus() == false && textFieldValidatorDescription.getValidateStatus() == false) {
