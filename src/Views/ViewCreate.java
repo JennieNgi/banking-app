@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.awt.Color;
+import java.awt.Font;
 
 public class ViewCreate extends JFrame{
 	
@@ -38,6 +39,8 @@ public class ViewCreate extends JFrame{
 		setBounds(100, 100, 480, 414);
 		this.setResizable(false);
 		JLabel lblHeader = new JLabel("Bank Machine Simulation v1.0 >");
+		lblHeader.setForeground(Color.BLUE);
+		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		
 		listAccountType = new JList<String> ();
@@ -87,7 +90,7 @@ public class ViewCreate extends JFrame{
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 344, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
@@ -104,7 +107,7 @@ public class ViewCreate extends JFrame{
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(btnCancel))
 								.addComponent(txtErrorMessage, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(42, Short.MAX_VALUE))
+					.addContainerGap(72, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -145,34 +148,34 @@ public class ViewCreate extends JFrame{
 	}
 	
 	public void validateMe() {
-		textFieldValidatorAmount.checkAmount();
-		textFieldValidatorDescription.checkDescription();
+		textFieldValidatorAmount.check();
+		textFieldValidatorDescription.check();
 		
 		if (textFieldValidatorAmount.getValidateStatus() == false && textFieldValidatorDescription.getValidateStatus() == false) {
 			txtErrorMessage.setText("*Description required \n*0.00 format for amount required");
-			textFieldValidatorAmount.checkAmount();
-			textFieldValidatorDescription.checkDescription();
+			textFieldValidatorAmount.check();
+			textFieldValidatorDescription.check();
 		}else {
 		
 			if (textFieldValidatorAmount.getValidateStatus() == true) {
 				textFieldValidatorAmount.reset();
-				textFieldValidatorDescription.checkDescription();
+				textFieldValidatorDescription.check();
 				if (textFieldValidatorDescription.getValidateStatus() == false) {
 					txtErrorMessage.setText("*Description required");
 				}
 			}else {
-				textFieldValidatorAmount.checkAmount();
+				textFieldValidatorAmount.check();
 				txtErrorMessage.setText("*0.00 format for amount required");
 			}
 			
 			if (textFieldValidatorDescription.getValidateStatus() == true) {
 				textFieldValidatorDescription.reset();
-				textFieldValidatorAmount.checkAmount();
+				textFieldValidatorAmount.check();
 				if (textFieldValidatorAmount.getValidateStatus() == false) {
 					txtErrorMessage.setText("*0.00 format for amount required");
 				}
 			}else {
-				textFieldValidatorDescription.checkDescription();
+				textFieldValidatorDescription.check();
 				txtErrorMessage.setText("*Description required");
 			}	
 		}

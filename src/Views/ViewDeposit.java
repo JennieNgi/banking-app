@@ -14,6 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class ViewDeposit extends JFrame{
 	private Model model;
@@ -29,6 +30,8 @@ public class ViewDeposit extends JFrame{
 		setBounds(100, 100, 480, 414);
 		this.setResizable(false);
 		JLabel lblHeader = new JLabel("Bank Machine Simulation v1.0 >");
+		lblHeader.setForeground(Color.BLUE);
+		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		JLabel lblAmount = new JLabel("Enter Amount to deposit: $");
 		
@@ -60,7 +63,7 @@ public class ViewDeposit extends JFrame{
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblDescription, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
@@ -75,7 +78,7 @@ public class ViewDeposit extends JFrame{
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 									.addComponent(txtAmount)
 									.addComponent(txtDescription)))))
-					.addContainerGap(57, Short.MAX_VALUE))
+					.addContainerGap(87, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -112,35 +115,35 @@ public class ViewDeposit extends JFrame{
 	}
 	
 	public void validateMe() {
-		textFieldValidatorAmount.checkAmount();
-		textFieldValidatorDescription.checkDescription();
+		textFieldValidatorAmount.check();
+		textFieldValidatorDescription.check();
 		
 		if (textFieldValidatorAmount.getValidateStatus() == false && textFieldValidatorDescription.getValidateStatus() == false) {
 			txtErrorMessage.setText("*0.00 format for starting balance required \n*Description required");
 			
-			textFieldValidatorAmount.checkAmount();
-			textFieldValidatorDescription.checkDescription();
+			textFieldValidatorAmount.check();
+			textFieldValidatorDescription.check();
 		}else {
 		
 			if (textFieldValidatorAmount.getValidateStatus() == true) {
 				textFieldValidatorAmount.reset();
-				textFieldValidatorDescription.checkDescription();
+				textFieldValidatorDescription.check();
 				if (textFieldValidatorDescription.getValidateStatus() == false) {
 					txtErrorMessage.setText("*Description required");
 				}
 			}else {
-				textFieldValidatorAmount.checkAmount();
+				textFieldValidatorAmount.check();
 				txtErrorMessage.setText("*0.00 format for amount required");
 			}
 			
 			if (textFieldValidatorDescription.getValidateStatus() == true) {
 				textFieldValidatorDescription.reset();
-				textFieldValidatorAmount.checkAmount();
+				textFieldValidatorAmount.check();
 				if (textFieldValidatorAmount.getValidateStatus() == false) {
 					txtErrorMessage.setText("*0.00 format for amount required");
 				}
 			}else {
-				textFieldValidatorDescription.checkDescription();
+				textFieldValidatorDescription.check();
 				txtErrorMessage.setText("*Description required");
 			}	
 		}

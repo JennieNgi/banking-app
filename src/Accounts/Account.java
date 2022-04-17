@@ -13,6 +13,7 @@ public abstract class Account implements java.io.Serializable{
 
     protected String description;
     protected double balance;
+    
     protected ArrayList<Transaction> transactions;
     protected String myReport;
 

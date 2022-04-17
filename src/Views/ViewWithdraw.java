@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.Color;
+import java.awt.Font;
 
 public class ViewWithdraw extends JFrame{
 	private Model model;
@@ -30,6 +31,8 @@ public class ViewWithdraw extends JFrame{
 		setBounds(100, 100, 480, 414);
 		this.setResizable(false);
 		JLabel lblHeader = new JLabel("Bank Machine Simulation v1.0 >");
+		lblHeader.setForeground(Color.BLUE);
+		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		JLabel lbAmount = new JLabel("Enter Amount to withdraw: $");
 		
@@ -53,6 +56,7 @@ public class ViewWithdraw extends JFrame{
 		
 		txtErrorMessage = new JTextArea();
 		txtErrorMessage.setForeground(Color.RED);
+		txtErrorMessage.setLineWrap(true);
 		txtErrorMessage.setEditable(false);
 		txtErrorMessage.setOpaque(false);
 		
@@ -63,7 +67,7 @@ public class ViewWithdraw extends JFrame{
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 203, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
@@ -75,10 +79,10 @@ public class ViewWithdraw extends JFrame{
 									.addComponent(btnCancel)))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtErrorMessage, GroupLayout.PREFERRED_SIZE, 302, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtDescription, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtAmount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(415, Short.MAX_VALUE))
+								.addComponent(txtAmount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtErrorMessage, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(42, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -102,7 +106,7 @@ public class ViewWithdraw extends JFrame{
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(6)
 							.addComponent(txtErrorMessage, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(162, Short.MAX_VALUE))
+					.addContainerGap(159, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 		
@@ -121,34 +125,34 @@ public class ViewWithdraw extends JFrame{
 		textFieldValidatorAmount.checkWithDrawAmount(model.getAccounts().get(model.getCurrentAccount()).getBalance() , model.getAccounts().get(model.getCurrentAccount()).getFee());
 		System.out.println(model.getAccounts().get(model.getCurrentAccount()).getBalance());
 		System.out.println(model.getAccounts().get(model.getCurrentAccount()).getFee());
-		textFieldValidatorDescription.checkDescription();
+		textFieldValidatorDescription.check();
 		
 		if (textFieldValidatorAmount.getValidateStatus() == false && textFieldValidatorDescription.getValidateStatus() == false) {
-			txtErrorMessage.setText("Balance: $" + model.getAccounts().get(model.getCurrentAccount()).getBalanceStr() + "\nWithdrawal Fee: $" + model.getAccounts().get(model.getCurrentAccount()).getFeeStr() + "\n*0.00 format for amount >=balance + withdrawal fee \nand >withdrawal fee required \n*Description required");
+			txtErrorMessage.setText("Balance: $" + model.getAccounts().get(model.getCurrentAccount()).getBalanceStr() + "\nWithdrawal Fee: $" + model.getAccounts().get(model.getCurrentAccount()).getFeeStr() + "\n*0.00 format for amount >=balance + withdrawal \nfee and >0 required \n*Description required");
 			
 			textFieldValidatorAmount.checkWithDrawAmount(model.getAccounts().get(model.getCurrentAccount()).getBalance() , model.getAccounts().get(model.getCurrentAccount()).getFee());
-			textFieldValidatorDescription.checkDescription();
+			textFieldValidatorDescription.check();
 		}else {
 		
 			if (textFieldValidatorAmount.getValidateStatus() == true) {
 				textFieldValidatorAmount.reset();
-				textFieldValidatorDescription.checkDescription();
+				textFieldValidatorDescription.check();
 				if (textFieldValidatorDescription.getValidateStatus() == false) {
 					txtErrorMessage.setText("*Description required");
 				}
 			}else {
 				textFieldValidatorAmount.checkWithDrawAmount(model.getAccounts().get(model.getCurrentAccount()).getBalance() , model.getAccounts().get(model.getCurrentAccount()).getFee());
-				txtErrorMessage.setText("\"Balance: $\" + model.getAccounts().get(model.getCurrentAccount()).getBalanceStr() + \"\\nWithdrawal Fee: $\" + model.getAccounts().get(model.getCurrentAccount()).getFeeStr() + \"\\n*0.00 format for amount >=balance + withdrawal fee and >withdrawal fee required");
+				txtErrorMessage.setText("Balance: $" + model.getAccounts().get(model.getCurrentAccount()).getBalanceStr() + "\nWithdrawal Fee: $" + model.getAccounts().get(model.getCurrentAccount()).getFeeStr() + "\n*0.00 format for amount >=balance + withdrawal \nfee and >0 required");
 			}
 			
 			if (textFieldValidatorDescription.getValidateStatus() == true) {
 				textFieldValidatorDescription.reset();
 				textFieldValidatorAmount.checkWithDrawAmount(model.getAccounts().get(model.getCurrentAccount()).getBalance() , model.getAccounts().get(model.getCurrentAccount()).getFee());
 				if (textFieldValidatorAmount.getValidateStatus() == false) {
-					txtErrorMessage.setText("\"Balance: $\" + model.getAccounts().get(model.getCurrentAccount()).getBalanceStr() + \"\\nWithdrawal Fee: $\" + model.getAccounts().get(model.getCurrentAccount()).getFeeStr() + \"\\n*0.00 format for amount >=balance + withdrawal fee and >withdrawal fee required");
+					txtErrorMessage.setText("Balance: $" + model.getAccounts().get(model.getCurrentAccount()).getBalanceStr() + "\nWithdrawal Fee: $" + model.getAccounts().get(model.getCurrentAccount()).getFeeStr() + "\n*0.00 format for amount >=balance + withdrawal \nfee and >0 required");
 				}
 			}else {
-				textFieldValidatorDescription.checkDescription();
+				textFieldValidatorDescription.check();
 				txtErrorMessage.setText("*Description required");
 			}	
 		}

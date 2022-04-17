@@ -19,14 +19,18 @@ public class Controller {
 
 	public Controller (Model myModel, ViewMenu myViewMenu, ViewCreate myViewCreate, ViewDeposit myViewDeposit, View myView, ViewDelete myViewDelete,  ViewWithdraw myViewWithdraw, ViewSelect myViewSelect) {
 		model = myModel;
+		model.readObject();
+		
 		viewMenu = myViewMenu;
 		viewCreate = myViewCreate;
 		viewDeposit = myViewDeposit;
 		viewDelete = myViewDelete;
 		viewWithdraw = myViewWithdraw;
 		viewSelect = myViewSelect;
-		
 		view = myView;
+		
+		viewMenu.setVisible(true);
+		viewMenu.enableButton();
 		
 		viewMenu.addViewCreateListener((ActionEvent e) -> onViewCreate(e));
 		viewMenu.addViewDeleteListener((ActionEvent e) -> onViewDelete(e));
@@ -96,6 +100,8 @@ public class Controller {
 		// write the accounts into the file
 		model.writeObject();
 		viewMenu.setVisible(false);
+		viewMenu.dispose();
+		System.exit(0);
 	}
 	
 	private void onView(ActionEvent e) {

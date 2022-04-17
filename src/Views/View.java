@@ -11,6 +11,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import java.awt.Color;
+import java.awt.Font;
 
 public class View extends JFrame{
 	private Model model;
@@ -21,6 +23,8 @@ public class View extends JFrame{
 		setBounds(100, 100, 480, 414);
 		this.setResizable(false);
 		JLabel lblHeader = new JLabel("Bank Machine Simulation v1.0 >");
+		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblHeader.setForeground(Color.BLUE);
 		
 		JLabel lblTitle = new JLabel("Transactions of currently selected account:");
 		
@@ -36,13 +40,14 @@ public class View extends JFrame{
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnOk)
-						.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 297, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(txtOutput, GroupLayout.PREFERRED_SIZE, 458, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 422, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 422, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(lblHeader, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(lblTitle, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(

@@ -11,6 +11,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 public class ViewMenu extends JFrame{
 	private Model model;
@@ -27,6 +29,8 @@ public class ViewMenu extends JFrame{
 		this.setResizable(false);
 		
 		JLabel lblHeader = new JLabel("Bank Machine Simulation v1.0 >");
+		lblHeader.setForeground(Color.BLUE);
+		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btnSelect = new JButton("select");
 		

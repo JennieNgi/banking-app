@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class ViewDelete extends JFrame{
 	private Model model;
@@ -21,6 +22,8 @@ public class ViewDelete extends JFrame{
 		setBounds(100, 100, 480, 414);
 		this.setResizable(false);
 		JLabel lblHeader = new JLabel("Bank Machine Simulation v1.0 >");
+		lblHeader.setForeground(Color.BLUE);
+		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		JLabel lblDelete = new JLabel("Delete Current Account?");
 		
@@ -36,7 +39,7 @@ public class ViewDelete extends JFrame{
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblDelete, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -46,7 +49,7 @@ public class ViewDelete extends JFrame{
 									.addComponent(btnDelete)
 									.addGap(6)
 									.addComponent(btnCancel)))))
-					.addContainerGap(152, Short.MAX_VALUE))
+					.addContainerGap(148, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

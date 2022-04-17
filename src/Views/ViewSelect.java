@@ -15,6 +15,7 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JScrollPane;
+import java.awt.Font;
 
 public class ViewSelect extends JFrame{
 	private static JList<String> list;
@@ -31,6 +32,8 @@ public class ViewSelect extends JFrame{
 		model = myModel;
 		
 		JLabel lblNewLabel = new JLabel("Bank Machine Simulation v1.0 >");
+		lblNewLabel.setForeground(Color.BLUE);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		JLabel lblSelect = new JLabel("Select Account:");
 		listModel = new DefaultListModel<String>();
@@ -55,13 +58,13 @@ public class ViewSelect extends JFrame{
 							.addComponent(lblSelect, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
 							.addGap(55)
 							.addComponent(lblErrorMessage, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnOk)
 							.addGap(18)
-							.addComponent(btnCancel)))
-					.addContainerGap(250, Short.MAX_VALUE))
+							.addComponent(btnCancel))
+						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(226, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
