@@ -1,3 +1,5 @@
+https://user-images.githubusercontent.com/75710628/222833901-258553cc-395c-4fad-b684-b47e8061c59b.mov
+
 # Banking App
 This is a Java application that simulates the use of a bank machine with the extra included functionality of being able to create and delete accounts. Users can set up as many accounts as they desire and each account has a balance, a description, and a series of transactions that have occurred (withdraw / deposit).
 
